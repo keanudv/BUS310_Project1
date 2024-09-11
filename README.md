@@ -1,4 +1,4 @@
-<h1>Busines 310 (Data Science/Decision Science) Project</h1>
+<h1>Business 310 (Data Science/Decision Science) Project</h1>
 <h2>By Keanu Valencia</h2>
 
 <p>This Repository will be used to document my work for my first BUS 310 Project.</p>
