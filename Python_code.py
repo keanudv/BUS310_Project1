@@ -44,9 +44,11 @@ columns = [
 
 # Creates the final dataframe used for analysis
 final_df = clean_df[columns]
+
+# Filter the City column to include only Wailuku (used for deep analysis)
 wailuku_df = final_df[final_df["City"] == "Wailuku"]
 
-# Creates a Scatter Plot with a trend line to identity outliers between sold price and living square feet in Wailuku
+# Creates a Scatter Plot with a trend line to identity outliers between Sold_Price and Living_SQFT in Wailuku
 sns.regplot(data=wailuku_df, x="Living_SQFT", y="Sold_Price")
 plt.title("Living Square Feet vs. Sold Price in Wailuku")
 plt.xlabel("Living Square Feet")
@@ -64,16 +66,16 @@ There are a few outliers that we need to drop. To do this, we can use the Interq
   Step 3: Drop the outliers.
 '''
 
-# Calculate the IQR for the sold price
+# Step 1: Calculate the IQR for the sold price
 Q1 = wailuku_df["Sold_Price"].quantile(0.25)
 Q3 = wailuku_df["Sold_Price"].quantile(0.75)
 IQR = Q3 - Q1
 
-# Define the outlier boundaries
+# Step 2: Define the outlier boundaries
 lower_bound = Q1 - 1.5 * IQR
 upper_bound = Q3 + 1.5 * IQR
 
-# Drop the outliers
+# Step 3: Drop the outliers
 filtered_df = wailuku_df[(wailuku_df["Sold_Price"] >= lower_bound) & (wailuku_df["Sold_Price"] <= upper_bound)]
 
 # Creates the same Scatter Plot without the outliars
@@ -88,8 +90,8 @@ correl = filtered_df[["Living_SQFT", "Sold_Price"]].corr().loc["Living_SQFT", "S
 print(correl)
 
 # Creates a Histogram to show the spread of the sold prices in Wailuku
-sns.histplot(data=wailuku_df, x="Sold_Price", bins=10, kde=False)
+sns.histplot(data=filtered_df, x="Sold_Price", bins=10, kde=False)
 plt.title("Distribution of Sold Prices in Wailuku")
-plt.xlabel("Sold Price")
+plt.xlabel("Sold Price (In Millions)")
 plt.ylabel("Frequency")
 plt.show()
