@@ -8,7 +8,6 @@ Class: BUS 310 (Data Science/Decision Science)
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Load the data set into Python
 file_location = "C:\\Users\\keanu\\OneDrive\\Desktop\\School\\BUS 310\\BUS 310 Project 1\\hotsheet.csv"
@@ -50,9 +49,9 @@ wailuku_df = final_df[final_df["City"] == "Wailuku"]
 
 # Creates a Scatter Plot with a trend line to identity outliers between Sold_Price and Living_SQFT in Wailuku
 sns.regplot(data=wailuku_df, x="Living_SQFT", y="Sold_Price")
-plt.title("Living Square Feet vs. Sold Price in Wailuku")
-plt.xlabel("Living Square Feet")
-plt.ylabel("Sold Price (In Millions)")
+plt.title("Living Square Feet vs. Sold Price in Wailuku", fontsize=34)
+plt.xlabel("Living Square Feet", fontsize=20)
+plt.ylabel("Sold Price (In Millions)", fontsize=20)
 plt.show()
 
 # Calculates the correlation coefficent to determine the strength of the relationship
@@ -80,9 +79,9 @@ filtered_df = wailuku_df[(wailuku_df["Sold_Price"] >= lower_bound) & (wailuku_df
 
 # Creates the same Scatter Plot without the outliars
 sns.regplot(data=filtered_df, x="Living_SQFT", y="Sold_Price")
-plt.title("Living Square Feet vs. Sold Price in Wailuku")
-plt.xlabel("Living Square Feet")
-plt.ylabel("Sold Price (In Millions)")
+plt.title("Living Square Feet vs. Sold Price in Wailuku", fontsize=34)
+plt.xlabel("Living Square Feet", fontsize=20)
+plt.ylabel("Sold Price (In Millions)", fontsize=20)
 plt.show()
 
 # Calculates the correlation coefficent to determine the strength of the relationship
@@ -91,7 +90,7 @@ print(correl)
 
 # Creates a Histogram to show the spread of the sold prices in Wailuku
 sns.histplot(data=filtered_df, x="Sold_Price", bins=10, kde=False)
-plt.title("Distribution of Sold Prices in Wailuku")
-plt.xlabel("Sold Price (In Millions)")
-plt.ylabel("Frequency")
+plt.title("Distribution of Sold Prices in Wailuku", fontsize=34)
+plt.xlabel("Sold Price (In Millions)", fontsize=20)
+plt.ylabel("Frequency", fontsize=20)
 plt.show()
